@@ -2,35 +2,27 @@ name: React CI Workflow
 
 on:
   push:
-    branches: [ "main, master" ]
+    branches: [ "main", "master" ]
   workflow_dispatch:
-  
+
 jobs:
   build:
-
     strategy:
       matrix:
         node-version: [20.x]
         os: [ubuntu-latest]
-        
     runs-on: ${{ matrix.os }}
 
-       # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-    
     steps:
-      
       - uses: actions/checkout@v4
-      - name: Use Node. js $< matrix. node-version y
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }} 
-          cache: 'npm' 
-          
-      - name: npm run clean install
-        run: yarn install
-       
-      - name: yarn run build, if present
-        run: yarn run build --if-present
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
 
-#      - name: yarn Run tests
-#        run: yarn test
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build project, if present
+        run: yarn run build --if-present
