@@ -1,0 +1,12 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "Sample project with Yarn build step",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Building project...' && mkdir -p dist && echo 'Build complete' > dist/build.txt"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {}
+}
